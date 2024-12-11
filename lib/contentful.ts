@@ -45,6 +45,7 @@ export const getRecentRecaps = async (): Promise<RecapPage[] | null> => {
     items: pages,
   } = await client.getEntries({
     content_type: 'recapPage',
+    // @ts-expect-error type error, but it really is works
     order: '-fields.date',
   });
 
