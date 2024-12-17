@@ -1,3 +1,4 @@
+import { PreviewBanner } from "@/components/Preview";
 import { Sidebar } from "@/components/Sidebar";
 import { getRecentRecaps } from "@/lib/contentful";
 import type { Metadata } from "next";
@@ -19,6 +20,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <PreviewBanner />
         <div id="wrapper">
           {children}
           <Sidebar pages={pages}/>

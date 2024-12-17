@@ -3,6 +3,7 @@ import { createClient, CreateClientParams } from "contentful";
 
 const {
   CONTENTFUL_API_KEY: API_KEY,
+  CONTENTFUL_PREVIEW_API_KEY: PREVIEW_API_KEY,
   CONTENTFUL_SPACE_ID: SPACE_ID,
   CONENTFUL_ENVIRONMENT: ENVIRONMENT,
 } = process.env;
@@ -21,14 +22,21 @@ const createContentfulClient = ({ space, accessToken, ...otherClientParams }: Pa
   })
 }
 
-const client = createContentfulClient({ space: SPACE_ID, accessToken: API_KEY, environment: ENVIRONMENT });
+const client = (isPreview: boolean) => {
+  const baseOptions: Partial<CreateClientParams> = { space: SPACE_ID, accessToken: API_KEY, environment: ENVIRONMENT };
+  if (isPreview) {
+    return createContentfulClient({ ...baseOptions, accessToken: PREVIEW_API_KEY, host: 'preview.contentful.com' })
+  }
+  return createContentfulClient(baseOptions)
+};
 
 export const getRecapByRoute = async (
   route: string,
+  isPreview: boolean,
 ): Promise<RecapPage | null> => {
   const {
     items: [page],
-  } = await client.getEntries({
+  } = await client(isPreview).getEntries({
     content_type: 'recapPage',
     'fields.slug': route,
   });
@@ -43,7 +51,7 @@ export const getRecapByRoute = async (
 export const getRecentRecaps = async (limit: number = 12): Promise<RecapPage[] | null> => {
   const {
     items: pages,
-  } = await client.getEntries({
+  } = await client(false).getEntries({
     content_type: 'recapPage',
     // @ts-expect-error type error, but it really is works
     order: '-fields.date',

@@ -2,11 +2,13 @@ import { Markdown } from "@/components/Markdown";
 import { RichText } from "@/components/RIchText";
 import { getRecapByRoute } from "@/lib/contentful";
 import moment from "moment";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 
 const getPageData = async (slug: string) => {
-  const page = await getRecapByRoute(slug);
+  const { isEnabled: isDraftMode }  = await draftMode();
+  const page = await getRecapByRoute(slug, isDraftMode);
 
   return page?.fields;
 }
@@ -29,15 +31,14 @@ export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>
-}) {
+  }) {
   const slug = (await params).slug
-  const page = await getRecapByRoute(slug);
+  const fields = await getPageData(slug);
 
-  if (page == null) {
+  if (fields == null) {
     return notFound();
   }
 
-  const { fields } = page;
   const {
     name,
     bookOfTheBible,
