@@ -1,33 +1,28 @@
+import { Sidebar } from "@/components/Sidebar";
+import { getRecentRecaps } from "@/lib/contentful";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import '../styles/main.css';
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Recaps of Men's Group",
   description: "Notes from what was discussed during group.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pages = await getRecentRecaps(4);
+  
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <div id="wrapper">
+          {children}
+          <Sidebar pages={pages}/>
+        </div>
       </body>
     </html>
   );

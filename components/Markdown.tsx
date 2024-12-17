@@ -6,7 +6,7 @@ export const Markdown = ({
   notes: string
 }) => {
   return (
-    <div className="m-10 text-left"
+    <div className="image fit"
       dangerouslySetInnerHTML={{
         __html: parse(notes, { breaks: true })
       }} />
