@@ -2001,6 +2001,7 @@ button,
   @media screen and (max-width: 1680px) {
     #sidebar {
       width: 24em; }
+      #sidebar.inactive > .inner { overflow-x: hidden; }
       #sidebar > .inner {
         padding: 1.66667em 1.66667em 1.33333em 1.66667em ;
         width: 24em; }
