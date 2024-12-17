@@ -30,7 +30,7 @@ export const Sidebar = ({pages}: {pages: RecapPage[] | null}) => {
         {/* <!-- Menu --> */}
         <nav id="menu">
           <header className="major">
-            <h2>Menu</h2>
+            <h2 className="w-full">Menu<span className="float-right"><a href="#" className="fas fa-times" onClick={closeSidebar}></a></span></h2>
           </header>
           <ul>
             <li><Link href="/" onClick={closeSidebar}>Homepage</Link></li>
