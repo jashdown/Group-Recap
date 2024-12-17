@@ -3,8 +3,6 @@ import moment from "moment";
 
 export const revalidate = 21600 // invalidate every six hours
 
-// testing change
-
 export default async function Home() {
   const pages = await getRecentRecaps();
 
