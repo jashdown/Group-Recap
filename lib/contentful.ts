@@ -40,13 +40,14 @@ export const getRecapByRoute = async (
   return page as unknown as RecapPage;
 };
 
-export const getRecentRecaps = async (): Promise<RecapPage[] | null> => {
+export const getRecentRecaps = async (limit: number = 12): Promise<RecapPage[] | null> => {
   const {
     items: pages,
   } = await client.getEntries({
     content_type: 'recapPage',
     // @ts-expect-error type error, but it really is works
     order: '-fields.date',
+    limit,
   });
 
   if (!pages || pages.length === 0) {
