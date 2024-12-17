@@ -1,5 +1,6 @@
+import { Markdown } from "@/components/Markdown";
+import { RichText } from "@/components/RIchText";
 import { getRecapByRoute } from "@/lib/contentful";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import moment from "moment";
 import { notFound } from "next/navigation";
 
@@ -42,6 +43,7 @@ export default async function Page({
     chapter,
     date,
     notes,
+    notesMarkdown
   } = fields;
 
   return (
@@ -49,9 +51,8 @@ export default async function Page({
       <div className="text-center max-w-[640px] mx-auto">
         <h1 className="mt-10 font-bold text-5xl">{bookOfTheBible} {chapter}</h1>
         {date && <h3>{moment(date).format('MMMM Do, YYYY')}</h3>}
-        <div className="m-10 text-left">
-          {documentToReactComponents(notes)}
-        </div>
+        {notes && <RichText notes={notes} />}
+        {notesMarkdown && <Markdown notes={notesMarkdown} />}
       </div>
     </div>
   );
