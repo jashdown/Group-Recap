@@ -22,15 +22,5 @@ export default async function Home() {
         </section>
       </div>
     </div>
-    // <div>
-    //   <h1>Recent Discussions</h1>
-    //   <ul>
-    //     {pages?.map((page) => {
-    //       const { fields } = page;
-    //       const { slug, bookOfTheBible, chapter, date } = fields;
-    //       return <li key={slug}><Link href={`/${slug}`}>{bookOfTheBible} {chapter}</Link> {date && <span>- {moment(date).format('MMMM Do, YYYY')}</span>}</li>
-    //     })}
-    //   </ul>
-    // </div>
   );
 }

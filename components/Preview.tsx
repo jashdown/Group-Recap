@@ -9,11 +9,11 @@ export async function PreviewBanner() {
 
   return (
     <aside>
-      <div className="fixed bg-gray-600 text-white w-full z-50 lg:[.cart-pane-on_&]:pr-[160px] 2xl:[.cart-pane-on_&]:pr-[160px] 2xl:[.cart-pane-on.cart-pane-open_&]:pr-[375px]">
+      <div className="fixed bg-gray-600 text-white w-full z-50">
         <div className="mx-auto px-5 text-sm">
-          <div className="block text-center sm:flex sm:text-left justify-between items-center py-2">
-            <p className="text-center">You are viewing this page in preview mode.</p>
-            <p className="flex-shrink-0 sm:pl-5 pt-1 sm:pt-0">
+          <div className="text-center flex sm:text-left justify-center items-center py-2 content-center">
+            <p className="ml-auto">You are viewing this page in preview mode.</p>
+            <p className="flex-shrink-0 sm:pl-5 pt-1 sm:pt-0 ml-auto">
               <a
                 className="inline-block underline hover:text-blue-200 duration-200 transition-colors"
                 href={`/api/disable-draft`}

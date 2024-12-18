@@ -9,6 +9,7 @@ type RecapPageFields = {
   date: string,
   notes?: Document,
   notesMarkdown?: string,
+  richTextFirst: boolean,
 }
 
 export type RecapPage = Entry<EntrySkeletonType<RecapPageFields, 'recapPage'>, undefined> 
