@@ -5,8 +5,7 @@ import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 const getPageData = async (slug: string) => {
-  const { isEnabled: isDraftMode }  = await draftMode();
-  const page = await getRecapByRoute(slug, isDraftMode);
+  const page = await getRecapByRoute(slug);
 
   return page;
 }

@@ -1,5 +1,6 @@
 import { RecapPage } from "@/types/contentful";
 import { createClient, CreateClientParams } from "contentful";
+import { draftMode } from "next/headers";
 
 const {
   CONTENTFUL_API_KEY: API_KEY,
@@ -22,8 +23,9 @@ const createContentfulClient = ({ space, accessToken, ...otherClientParams }: Pa
   })
 }
 
-const client = (isPreview: boolean) => {
+const client = async () => {
   const baseOptions: Partial<CreateClientParams> = { space: SPACE_ID, accessToken: API_KEY, environment: ENVIRONMENT };
+  const { isEnabled: isPreview }  = await draftMode();
   if (isPreview) {
     return createContentfulClient({ ...baseOptions, accessToken: PREVIEW_API_KEY, host: 'preview.contentful.com' })
   }
@@ -32,11 +34,10 @@ const client = (isPreview: boolean) => {
 
 export const getRecapByRoute = async (
   route: string,
-  isPreview: boolean,
 ): Promise<RecapPage | null> => {
   const {
     items: [page],
-  } = await client(isPreview).getEntries({
+  } = await (await client()).getEntries({
     content_type: 'recapPage',
     'fields.slug': route,
   });
@@ -51,7 +52,7 @@ export const getRecapByRoute = async (
 export const getRecentRecaps = async (limit: number = 12): Promise<RecapPage[] | null> => {
   const {
     items: pages,
-  } = await client(false).getEntries({
+  } = await (await client()).getEntries({
     content_type: 'recapPage',
     // @ts-expect-error type error, but it really is works
     order: '-fields.date',
