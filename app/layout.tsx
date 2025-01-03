@@ -1,6 +1,7 @@
 import { PreviewBanner } from "@/components/Preview";
 import { Sidebar } from "@/components/Sidebar";
 import { getRecentRecaps } from "@/lib/contentful";
+import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from "next";
 import '../styles/main.css';
 import "./globals.css";
@@ -19,6 +20,7 @@ export default async function RootLayout({
   
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="G-RS5PY4F2CD" />
       <body>
         <PreviewBanner />
         <div id="wrapper">
