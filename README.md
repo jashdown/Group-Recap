@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, set up your `.env` file:
+
+```bash
+cp dev.env.template dev.env
+```
+
+Fill out the API_KEY and SPACE_ID, which can be found in Contentful.
+
+Then, run the development server:
 
 ```bash
 npm run dev

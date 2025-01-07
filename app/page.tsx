@@ -15,8 +15,8 @@ export default async function Home() {
           <ul>
             {pages?.map((page) => {
               const { fields } = page;
-              const { slug, bookOfTheBible, chapter, date } = fields;
-              return <li key={slug}><Link href={`/${slug}`}>{bookOfTheBible} {chapter}</Link> {date && <span>- {moment(date).format('MMMM Do, YYYY')}</span>}</li>
+              const { slug, name, date } = fields;
+              return <li key={slug}><Link href={`/${slug}`}>{name}</Link> {date && <span>- {moment(date).format('MMMM Do, YYYY')}</span>}</li>
             })}
           </ul>
         </section>
