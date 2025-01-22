@@ -12,8 +12,6 @@ export const Post = ({ page }: { page: RecapPage }) => {
   
   const {
     name,
-    bookOfTheBible,
-    chapter,
     date,
     notes,
     notesMarkdown,
