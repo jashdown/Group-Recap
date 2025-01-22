@@ -23,13 +23,11 @@ export const Post = ({ page }: { page: RecapPage }) => {
   return (
     <div id="main">
       <div className="inner">
-        <header id="header" {...inspectorProps({ fieldId: 'name' })}>{name}</header>
+        <header id="header" {...inspectorProps({ fieldId: 'name' })}>
+          <h1>{name}</h1>
+        </header>
         <section>
           <header className="main">
-            <h1>
-              <span {...inspectorProps({ fieldId: 'bookOfTheBible' })}>{bookOfTheBible}</span>
-              <span {...inspectorProps({ fieldId: 'chapter' })}>{chapter}</span>
-            </h1>
             {date && <p {...inspectorProps({ fieldId: 'date' })}>{moment(date).format('MMMM Do, YYYY')}</p>}
           </header>
           {richTextFirst && notes && <RichText notes={notes} {...inspectorProps({

@@ -6,12 +6,12 @@ const {
   CONTENTFUL_API_KEY: API_KEY,
   CONTENTFUL_PREVIEW_API_KEY: PREVIEW_API_KEY,
   CONTENTFUL_SPACE_ID: SPACE_ID,
-  CONENTFUL_ENVIRONMENT: ENVIRONMENT,
+  CONTENTFUL_ENVIRONMENT: ENVIRONMENT,
 } = process.env;
 
 const createContentfulClient = ({ space, accessToken, ...otherClientParams }: Partial<CreateClientParams>) => {
   if (!space || !accessToken) {
-    throw Error('No sapce id or accessToken for Contentful');
+    throw Error('No space id or accessToken for Contentful');
   }
   return createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
