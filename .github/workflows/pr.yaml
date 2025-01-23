@@ -29,6 +29,8 @@ jobs:
             ${{ runner.os }}-
       - name: Root Install
         run: npm ci
+      - name: Run Tests
+        run: npm run test
       - name: Build
         env:
           CONTENTFUL_SPACE_ID: ${{ vars.CONTENTFUL_SPACE_ID }}

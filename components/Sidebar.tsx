@@ -50,7 +50,7 @@ export const Sidebar = ({pages}: {pages: RecapPage[] | null}) => {
                 const notesAsText = notes ? documentToPlainTextString(notes) : notesMarkdown ? parse(notesMarkdown, { async: false }).replace(/<\/?[^>]+(>|$)/g, "") : '';
                 return (
                   <article key={sys.id}>
-                    <Link href={`/${slug}`} onClick={closeSidebar}>{bookOfTheBible} {chapter}{date && <span> - {moment(date).format('MMMM Do, YYYY')}</span>}</Link>
+                    <Link href={`/${slug}`} onClick={closeSidebar} data-testid={`recentLink-${sys.id}`}>{bookOfTheBible} {chapter}{date && <span> - {moment(date).format('MMMM Do, YYYY')}</span>}</Link>
                     <p>{notesAsText.substring(0, 180)}...</p>
                   </article>
                 );

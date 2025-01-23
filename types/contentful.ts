@@ -1,5 +1,4 @@
 import type { Document } from "@contentful/rich-text-types";
-import { Entry, EntrySkeletonType } from "contentful";
 
 type RecapPageFields = {
   name: string;
@@ -12,4 +11,14 @@ type RecapPageFields = {
   richTextFirst: boolean,
 }
 
-export type RecapPage = Entry<EntrySkeletonType<RecapPageFields, 'recapPage'>, undefined> 
+export type RecapPage = {
+  sys: {
+      contentType: {
+          sys: {
+              id: "recapPage";
+          };
+    };
+    id: string;
+  };
+  fields: RecapPageFields;
+}
