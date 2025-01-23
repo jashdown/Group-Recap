@@ -3,6 +3,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { getRecentRecaps } from "@/lib/contentful";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
 import '../styles/main.css';
 import "./globals.css";
@@ -28,8 +29,9 @@ export default async function RootLayout({
           {children}
           <Sidebar pages={pages}/>
         </div>
+        <Analytics />
+        <SpeedInsights />
       </body>
-      <Analytics />
     </html>
   );
 }
